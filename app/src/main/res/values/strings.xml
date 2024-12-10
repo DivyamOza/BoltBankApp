@@ -1,3 +1,51 @@
 <resources>
-    <string name="app_name">BoltBankApplication</string>
+    <string name="app_name">Bold Bank</string>
+
+    <!-- START LANDING SCREEN STRINGS -->
+    <string name="tagline">Your Money, Our Responsibility</string>
+    <string name="company_logo_character">B</string>
+    <string name="login_title">Login</string>
+    <string name="next">Next</string>
+    <string name="login_subtitle">You are good to go…</string>
+    <string name="please_continue_title">Please login to continue…</string>
+    <!--  END  LANDING SCREEN STRINGS -->
+
+
+    <!-- START LOGIN SCREEN STRINGS -->
+    <string name="msg_welcome">Welcome to Bolt Bank</string>
+    <string name="phone_no">Phone Number</string>
+    <string name="password">Password</string>
+    <string name="terms_and_conditions">Terms and Conditions</string>
+    <string name="phone_number_required">Phone number is required</string>
+    <string name="msg_password_required">Password is required</string>
+    <string name="msg_accept_terms_and_condition">Please accept the terms and condition</string>
+    <!--  END  LOGIN SCREEN STRINGS -->
+
+
+    <!-- START OTP SCREEN STRINGS -->
+    <string name="verification">Verification</string>
+    <string name="verify">Verify</string>
+    <!--  END  OTP SCREEN STRINGS -->
+
+    <!-- START VALIDATION STRINGS -->
+    <string name="phone_number_10_digits">Phone number must be 10 digits</string>
+    <string name="phone_number_contain_digits_only">Phone number must contain only digits</string>
+    <!--  END  VALIDATION STRINGS -->
+
+    <!-- START HOME SCREEN STRINGS -->
+    <string name="current_balance">Current Balance</string>
+    <string name="expanses">Expanses</string>
+    <string name="income">Income</string>
+    <string name="today">Today</string>
+    <string name="month">Month</string>
+    <string name="year">Year</string>
+    <string name="overall">Overall</string>
+    <!--   END HOME SCREEN STRINGS -->
+
+    <!-- START PROFILE SCREEN STRINGS -->
+    <string name="messages">Messages</string>
+    <string name="notifications">Notifications</string>
+    <string name="account_details">Account Details</string>
+    <string name="my_purchases">My Purchases</string>
+    <!--  END PROFILE SCREEN STRINGS -->
 </resources>

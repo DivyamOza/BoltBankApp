@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.infy.boltbankapplication"
+    namespace = "com.example.trainingapp"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.infy.boltbankapplication"
+        applicationId = "com.example.trainingapp"
         minSdk = 26
         targetSdk = 35
         versionCode = 1
@@ -62,6 +62,10 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
+    implementation("androidx.compose.ui:ui:1.6.0-alpha05")
+    implementation("androidx.compose.material3:material3:1.2.0-alpha05")
+    implementation("androidx.compose.runtime:runtime:1.6.0-alpha05")
+
     //Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
@@ -83,7 +87,23 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    implementation("com.google.accompanist:accompanist-systemuicontroller:0.28.0")
+    implementation(libs.accompanist.systemuicontroller)
+    implementation(libs.androidx.material.icons.extended)
 
-    implementation("androidx.compose.material:material-icons-extended:1.6.0-alpha05")
+    // Timber for Logging
+    implementation(libs.timber)
+
+    // Secured Shared Preference
+    implementation(libs.androidx.security.crypto)
+
+    // Coil for Remote Images
+    implementation(libs.coil.compose)
+
+    // Charts
+    implementation(libs.mpandroidchart)
+
+    // Room Database
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.room.compiler)
+    implementation(libs.androidx.room.ktx)
 }
