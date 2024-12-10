@@ -1,5 +1,7 @@
 [versions]
+accompanistSystemuicontroller = "0.28.0"
 agp = "8.7.3"
+coilCompose = "2.3.0"
 kotlin = "1.9.25"
 coreKtx = "1.12.0"
 junit = "4.13.2"
@@ -11,11 +13,24 @@ composeBom = "2024.11.00"
 hilt-version = "2.49"
 kotlin-kapt-version = "1.6.20"
 hilt-navigation = "1.2.0"
+materialIconsExtended = "1.7.5"
+mpandroidchart = "v3.1.0"
 retrofit = "2.11.0"
 lifecycle-compose = "2.7.0"
+appcompat = "1.7.0"
+roomCompiler = "2.6.1"
+roomRuntime = "2.6.1"
+securityCrypto = "1.1.0-alpha06"
+timber = "5.0.1"
 
 [libraries]
+accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanistSystemuicontroller" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "materialIconsExtended" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntime" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
+androidx-security-crypto = { module = "androidx.security:security-crypto", version.ref = "securityCrypto" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -38,11 +53,15 @@ hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.r
 hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref="hilt-navigation" }
 
 #Retrofit
+mpandroidchart = { module = "com.github.PhilJay:MPAndroidChart", version.ref = "mpandroidchart" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 gson-convertor = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 
 #Lifecycle Compose
 lifecycle-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle-compose" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
