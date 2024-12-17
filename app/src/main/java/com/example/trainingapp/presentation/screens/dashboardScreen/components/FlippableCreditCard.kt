@@ -18,7 +18,7 @@ fun FlippableCreditCard(
     // Animation for the rotation with a tween for smoothness
     val rotation = animateFloatAsState(
         targetValue = if (isFlipped) 180f else 0f,
-        animationSpec = tween(durationMillis = 600) // Adjust duration for the flip
+        animationSpec = tween(durationMillis = 600)
     ).value
 
     Box(
@@ -27,7 +27,7 @@ fun FlippableCreditCard(
             .aspectRatio(1.6f)
             .graphicsLayer {
                 rotationY = rotation
-                cameraDistance = 12f * density // Distance for 3D effect
+                cameraDistance = 12f * density
             }
     ) {
         if (rotation <= 90f) {

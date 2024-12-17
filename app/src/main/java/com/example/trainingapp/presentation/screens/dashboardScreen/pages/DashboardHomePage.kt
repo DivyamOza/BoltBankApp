@@ -50,7 +50,6 @@ fun DashboardHomePage() {
     }
     var selectedTabIndex by rememberSaveable { mutableStateOf(0) }
 
-    // Define a map for the percentages and labels based on tab selection
     val progressData = mapOf(
         0 to Pair(0.64f, "Today"),
         1 to Pair(0.48f, "Month"),
@@ -76,7 +75,6 @@ fun DashboardHomePage() {
                 divider = { AppSpacer(height = 5.dp) },
                 modifier = Modifier
                     .fillMaxWidth()
-                    //.wrapContentHeight()
                     .background(color = Color.White),
                 indicator = { tabPositions ->
                     TabRowDefaults.Indicator(
@@ -131,7 +129,6 @@ fun DashboardHomePage() {
                         .fillMaxWidth()
                         .padding(15.dp)
                 ) {
-                    // "Income" Column
                     Column(horizontalAlignment = Alignment.Start, modifier = Modifier.weight(1f)) {
                         AppText(
                             text = ctx.getString(R.string.income),
@@ -149,20 +146,18 @@ fun DashboardHomePage() {
                         )
                     }
 
-                    // Vertical Divider in the middle
                     Box(
                         modifier = Modifier
-                            .height(48.dp) // Constrain the height of the box to match the content
+                            .height(48.dp)
                             .padding(horizontal = 15.dp)
                     ) {
                         VerticalDivider(
                             modifier = Modifier
-                                .fillMaxHeight() // Fills the height of the Box
+                                .fillMaxHeight()
                                 .width(1.dp), color = Color.LightGray
                         )
                     }
 
-                    // "Expenses" Column
                     Column(horizontalAlignment = Alignment.Start, modifier = Modifier.weight(1f)) {
                         AppText(
                             text = ctx.getString(R.string.expanses),

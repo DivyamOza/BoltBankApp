@@ -59,7 +59,6 @@ fun CircularProgressBar(
             )
         }
 
-        // Display the percentage text
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             AppText(
                 text = "${(animatedPercentage * 100).toInt()}%",

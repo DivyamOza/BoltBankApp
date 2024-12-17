@@ -76,4 +76,3 @@ kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin-kapt-ver
 
 [bundles]
 retrofit = ["retrofit", "gson-convertor"]
-

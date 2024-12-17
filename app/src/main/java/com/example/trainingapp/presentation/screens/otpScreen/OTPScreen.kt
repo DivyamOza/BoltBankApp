@@ -45,20 +45,15 @@ import com.example.trainingapp.utils.SecureSharedPreference
 fun OTPScreen(gotoDashboard: () -> Unit) {
     val context = LocalContext.current
 
-    // Use remember to generate OTP only once during the composable lifecycle
     val otp = rememberSaveable { NotificationUtils.generateOTP() }
 
-    // State to hold OTP digits
     var otpDigits by rememberSaveable { mutableStateOf(List(4) { "" }) }
 
-    // FocusRequesters for each OTP field
     val focusRequesters = List(4) { FocusRequester() }
 
-    // Check if verify button should be enabled
     val isVerifyButtonEnabled =
         otpDigits.joinToString("").isNotEmpty() && otpDigits.joinToString("").isNotBlank()
 
-    // Permission launcher for POST_NOTIFICATIONS
     val permissionLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestPermission()
     ) { isGranted ->
@@ -69,7 +64,6 @@ fun OTPScreen(gotoDashboard: () -> Unit) {
         }
     }
 
-    // Launch the permission request in a LaunchedEffect to avoid triggering during composable initialization
     LaunchedEffect(Unit) {
         permissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
     }
@@ -155,14 +149,10 @@ fun OTPScreen(gotoDashboard: () -> Unit) {
                                 Toast.makeText(
                                     context, "OTP Verified Successfully!", Toast.LENGTH_SHORT
                                 ).show()
-                                // TODO: NEED TO MANAGE SHARED-PREFERENCE
-                                /*NotificationUtils.showNotification(
-                                    context, otp
-                                )*/ // Show notification on success
-                                /*SecureSharedPreference(context).putBoolean(
+                                SecureSharedPreference(context).putBoolean(
                                     "isLoggedIn",
                                     value = true
-                                )*/
+                                )
                                 gotoDashboard()
                             } else {
                                 Toast.makeText(

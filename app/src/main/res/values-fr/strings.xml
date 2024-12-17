@@ -1,0 +1,91 @@
+<resources>
+    <string name="app_name">Bold Bank</string>
+
+    <!-- START LANDING SCREEN STRINGS -->
+    <string name="tagline">Votre argent, notre responsabilité</string>
+    <string name="company_logo_character">B</string>
+    <string name="login_title">Connexion</string>
+    <string name="next">Suivant</string>
+    <string name="login_subtitle">Vous êtes prêt à partir…</string>
+    <string name="please_continue_title">Veuillez vous connecter pour continuer…</string>
+    <!--  END  LANDING SCREEN STRINGS -->
+
+    <!-- START LOGIN SCREEN STRINGS -->
+    <string name="msg_welcome">Bienvenue chez Bolt Bank</string>
+    <string name="phone_no">Numéro de téléphone</string>
+    <string name="password">Mot de passe</string>
+    <string name="terms_and_conditions">Conditions générales</string>
+    <string name="phone_number_required">Le numéro de téléphone est requis</string>
+    <string name="msg_password_required">Le mot de passe est requis</string>
+    <string name="msg_accept_terms_and_condition">Veuillez accepter les conditions générales</string>
+    <!--  END  LOGIN SCREEN STRINGS -->
+
+    <!-- START OTP SCREEN STRINGS -->
+    <string name="verification">Vérification</string>
+    <string name="verify">Vérifier</string>
+    <!--  END  OTP SCREEN STRINGS -->
+
+    <!-- START VALIDATION STRINGS -->
+    <string name="phone_number_10_digits">Le numéro de téléphone doit comporter 10 chiffres</string>
+    <string name="phone_number_contain_digits_only">Le numéro de téléphone doit contenir uniquement des chiffres</string>
+    <!--  END  VALIDATION STRINGS -->
+
+    <!-- START HOME SCREEN STRINGS -->
+    <string name="current_balance">Solde actuel</string>
+    <string name="expanses">Dépenses</string>
+    <string name="income">Revenu</string>
+    <string name="today">Aujourd\'hui</string>
+    <string name="month">Mois</string>
+    <string name="year">Année</string>
+    <string name="overall">Global</string>
+    <string name="search">Rechercher</string>
+    <!--   END HOME SCREEN STRINGS -->
+
+    <!-- START PROFILE SCREEN STRINGS -->
+    <string name="messages">le message</string>
+    <string name="notifications">la notification</string>
+    <string name="account_details">Détails du compte</string>
+    <string name="my_purchases">Mes achats</string>
+    <string name="log_out">Déconnexion</string>
+    <!--  END PROFILE SCREEN STRINGS -->
+
+    <!-- START SETTINGS SCREEN STRINGS -->
+    <string name="general">Général</string>
+    <string name="notifications_subtitle">Activer ou désactiver les notifications de l\'application</string>
+    <string name="dark_mode">Mode sombre</string>
+    <string name="dark_mode_subtitle">Basculer entre le thème clair et le thème sombre</string>
+    <string name="account">Compte</string>
+    <string name="change_password">Changer le mot de passe</string>
+    <string name="change_password_subtitle">Mettre à jour le mot de passe de votre compte</string>
+    <string name="language">Langue</string>
+    <string name="language_subtitle">Sélectionnez votre langue préférée</string>
+    <!-- END SETTINGS SCREEN STRINGS -->
+
+
+    <!-- START GRAPH SCREEN STRINGS -->
+    <string name="transactions">Transactions</string>
+    <string name="day">Jour</string>
+    <string name="card_type">Types de cartes</string>
+    <string name="card_type_subtitle">Veuillez sélectionner une carte…</string>
+    <string name="platinum_card">Carte Platine</string>
+    <string name="platinum_card_description">Limites de retrait et de transaction plus élevées.&#10;Offres et privilèges exclusifs.&#10;Avantages améliorés sur les voyages, les repas et les achats.</string>
+    <string name="gold_card">Carte Or</string>
+    <string name="gold_card_description">Convient aux besoins de dépenses plus élevés.&#10;Limites de transaction compétitives par rapport aux cartes premium.</string>
+    <string name="wealth_card">Carte Richesse</string>
+    <string name="wealth_card_description">Exclusif aux clients de Wealth Management.&#10;Récompenses premium et privilèges de style de vie.&#10;Couverture d\'assurance plus élevée.</string>
+    <string name="pride_card">Carte Fierté</string>
+    <string name="pride_card_description">Accepté dans le monde entier.&#10;Limites de transaction et de retrait modérées.</string>
+    <string name="classic_card">Carte Classique</string>
+    <string name="classic_card_description">Carte standard pour les transactions quotidiennes.&#10;Frais d\'émission et de maintenance abordables.</string>
+    <string name="card_limit_per_month">Limite de carte par mois</string>
+    <string name="limit">Limite</string>
+    <string name="expenses">Dépenses</string>
+    <string name="maximum_limit_title">Limite maximale : 50 000 ₹ par mois</string>
+    <string name="no_data_found">Aucune donnée trouvée!</string>
+    <!-- END GRAPH SCREEN STRINGS -->
+
+    <!-- START CARD SCREEN STRINGS -->
+    <string name="debit_card">CARTE DE DÉBIT</string>
+    <string name="valid_upto">Valable jusqu\'à</string>
+    <!-- END  CARD SCREEN STRINGS -->
+</resources>

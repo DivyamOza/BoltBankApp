@@ -25,6 +25,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -52,6 +53,7 @@ fun CreditCardFront(
     @DrawableRes backgroundDrawable: Int,
     isBlue: Boolean = true
 ) {
+    val ctx = LocalContext.current
     val timesNewRoman = FontFamily(
         Font(resId = R.font.times_new_roman, weight = FontWeight.Normal),
     )
@@ -72,7 +74,7 @@ fun CreditCardFront(
         Image(
             painter = painterResource(id = backgroundDrawable),
             contentDescription = null,
-            contentScale = ContentScale.Crop, // Crop the image to fit the background
+            contentScale = ContentScale.Crop,
             modifier = Modifier
                 .fillMaxSize()
                 .clip(RoundedCornerShape(12.dp))
@@ -85,7 +87,7 @@ fun CreditCardFront(
                 horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth()
             ) {
                 AppText(
-                    text = "Debit Card".uppercase(),
+                    text = ctx.getString(R.string.debit_card).uppercase(),
                     color = Color.White,
                     isBold = true,
                     fontSize = 20
@@ -124,7 +126,7 @@ fun CreditCardFront(
                 )
                 Column {
                     AppText(
-                        text = "Valid up to",
+                        text = ctx.getString(R.string.valid_upto),
                         fontSize = 8,
                         color = Color.White,
                         isThin = true,

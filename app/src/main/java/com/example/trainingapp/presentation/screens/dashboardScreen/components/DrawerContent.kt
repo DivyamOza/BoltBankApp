@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.MailOutline
+import androidx.compose.material.icons.filled.ManageAccounts
+import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
@@ -21,6 +23,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.trainingapp.R
 import com.example.trainingapp.presentation.components.AppButton
 import com.example.trainingapp.presentation.components.AppSpacer
 import com.example.trainingapp.presentation.screens.dashboardScreen.pages.ProfileSegment
@@ -29,14 +32,18 @@ import com.example.trainingapp.utils.SecureSharedPreference
 
 @Preview
 @Composable
-fun DrawerContent(modifier: Modifier = Modifier, onClose: () -> Unit) {
-    val context = LocalContext.current
+fun DrawerContent(modifier: Modifier = Modifier, onClose: () -> Unit, onLogout: () -> Unit) {
+    val ctx = LocalContext.current
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(color = Color.White)
     ) {
-        Column {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(10.dp),
+            modifier = Modifier
+                .fillMaxSize()
+        ) {
             // Top Section
             Column(
                 verticalArrangement = Arrangement.SpaceEvenly,
@@ -45,7 +52,8 @@ fun DrawerContent(modifier: Modifier = Modifier, onClose: () -> Unit) {
                     .fillMaxWidth()
                     .background(color = Green)
                     .height(110.dp)
-            ) {
+            )
+            {
                 Row(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     modifier = Modifier
@@ -53,9 +61,9 @@ fun DrawerContent(modifier: Modifier = Modifier, onClose: () -> Unit) {
                         .padding(10.dp)
                 ) {
                     UserStatusWidget(
-                        imgUrl = "https://pngfre.com/wp-content/uploads/virat-kohli-poster.png",
-                        name = "Mr. Virat Kohli",
-                        location = "Pune, India"
+                        imgUrl = "https://dummyjson.com/icon/emilys/128",
+                        name = "emilys",
+                        location = "625 Main Street"
                     )
                     IconButton(onClick = {
                         onClose()
@@ -68,22 +76,27 @@ fun DrawerContent(modifier: Modifier = Modifier, onClose: () -> Unit) {
                     }
                 }
             }
-            AppSpacer(height = 20.dp)
-            ProfileSegment(
-                imageVector = Icons.Filled.MailOutline,
-                text = "Alex",
-                notificationCount = 3
-            )
             AppSpacer(height = 10.dp)
             ProfileSegment(
                 imageVector = Icons.Filled.MailOutline,
-                text = "Alex",
+                text = ctx.getString(R.string.messages),
+                notificationCount = 3
+            )
+            ProfileSegment(
+                imageVector = Icons.Filled.Notifications,
+                text = ctx.getString(R.string.notifications),
+                notificationCount = 3
+            )
+            ProfileSegment(
+                imageVector = Icons.Filled.ManageAccounts,
+                text = ctx.getString(R.string.account_details),
                 notificationCount = 3
             )
             AppSpacer(30.dp)
-            AppButton(text = "Logout", onClick = {
-                SecureSharedPreference(context).clear()
-                onClose() })
+            AppButton(text = ctx.getString(R.string.log_out), onClick = {
+                onClose()
+                onLogout()
+            })
         }
     }
 }

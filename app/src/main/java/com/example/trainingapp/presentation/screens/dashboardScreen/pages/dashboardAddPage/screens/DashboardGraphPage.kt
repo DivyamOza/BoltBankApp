@@ -24,10 +24,14 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -37,8 +41,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.intl.Locale
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.toUpperCase
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -49,36 +55,53 @@ import com.example.trainingapp.presentation.components.AppSpacer
 import com.example.trainingapp.presentation.components.AppText
 import com.example.trainingapp.presentation.screens.dashboardScreen.components.LineChartView
 import com.example.trainingapp.ui.theme.DarkerGreen
+import com.example.trainingapp.ui.theme.Green
 import com.example.trainingapp.ui.theme.LightGreenForBalance
 
-@OptIn(ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Preview
 @Composable
-fun DashboardGraphPage() {
+fun DashboardGraphPage(onNext: () -> Unit) {
     val ctx = LocalContext.current
     val cardList = listOf(
         Pair(
-            "Platinum Card",
-            "Higher withdrawal and transaction limits.\nExclusive offers and privileges.\nEnhanced benefits on travel, dining, and shopping."
+            ctx.getString(R.string.platinum_card),
+            ctx.getString(R.string.platinum_card_description)
         ),
         Pair(
-            "Gold Card",
-            "Suitable for higher spending needs.\nCompetitive transaction limits compared to premium cards."
+            ctx.getString(R.string.gold_card),
+            ctx.getString(R.string.gold_card_description),
         ),
         Pair(
-            "Wealth Card",
-            "Exclusive to Wealth Management customers.\nPremium rewards and lifestyle privileges.\nHigher insurance coverage."
+            ctx.getString(R.string.wealth_card),
+            ctx.getString(R.string.wealth_card_description),
         ),
         Pair(
-            "Pride Card", "Accepted worldwide.\nModerate transaction and withdrawal limits."
+            ctx.getString(R.string.pride_card),
+            ctx.getString(R.string.pride_card_description),
         ),
         Pair(
-            "Classic Card",
-            "Standard card for day-to-day transactions.\nAffordable issuance and maintenance fees."
+            ctx.getString(R.string.classic_card),
+            ctx.getString(R.string.classic_card_description),
         ),
     )
 
+    val sheetState = rememberModalBottomSheetState(
+        skipPartiallyExpanded = false
+    )
+
     var selectedIndex by remember { mutableStateOf(-1) }
+    var selectedIndexOfInfo by remember { mutableStateOf(-1) }
+    var isBottomSheetVisible by remember { mutableStateOf(false) }
+
+    // LaunchedEffect to control modal visibility
+    LaunchedEffect(isBottomSheetVisible) {
+        if (isBottomSheetVisible) {
+            sheetState.show() // Show the sheet when visibility is true
+        } else {
+            sheetState.hide() // Hide the sheet when visibility is false
+        }
+    }
 
     Box(
         modifier = Modifier
@@ -95,9 +118,14 @@ fun DashboardGraphPage() {
             }
 
             AppSpacer(height = 20.dp)
-            AppText(text = "Card Types", isBold = true, fontSize = 20, color = Color.Black)
             AppText(
-                text = "Please select any one card...",
+                text = ctx.getString(R.string.card_type),
+                isBold = true,
+                fontSize = 20,
+                color = Color.Black
+            )
+            AppText(
+                text = ctx.getString(R.string.card_type_subtitle),
                 isThin = true,
                 fontSize = 12,
                 color = Color.Gray
@@ -116,7 +144,10 @@ fun DashboardGraphPage() {
                 itemsIndexed(cardList) { index, item ->
                     CompactCardWithFixedHeight(pair = item, {
                         selectedIndex = index
-                    }, selectedIndex == index)
+                    }, selectedIndex == index, onInfoClick = {
+                        selectedIndexOfInfo = index
+                        isBottomSheetVisible = true
+                    })
                 }
             }
 
@@ -129,26 +160,36 @@ fun DashboardGraphPage() {
                 backgroundColor = if (selectedIndex != -1) Color.Black else Color.Gray,
                 onClick = {
                     if (selectedIndex == -1) {
-                        // Please select one card option usign snack bar
+                        // Show a toast if no card is selected
                         Toast.makeText(ctx, "Please select card option", Toast.LENGTH_SHORT).show()
                     } else {
-                        // Navigate
+                        // Proceed to the next screen or action
+                        onNext()
                     }
                 },
                 modifier = Modifier.padding(horizontal = 20.dp)
             )
         }
     }
+
+    // Only show the bottom sheet if a valid card has been selected
+    if (selectedIndexOfInfo != -1 && isBottomSheetVisible) {
+        BottomSheetContent(title = cardList[selectedIndexOfInfo].first,
+            content = cardList[selectedIndexOfInfo].second,
+            onClose = {
+                isBottomSheetVisible = false
+            })
+    }
 }
 
 
 @Composable
 fun CompactCardWithFixedHeight(
-    pair: Pair<String, String>, onSelect: () -> Unit, isSelected: Boolean = false
+    pair: Pair<String, String>,
+    onSelect: () -> Unit,
+    isSelected: Boolean = false,
+    onInfoClick: () -> Unit
 ) {
-    // State for controlling tooltip visibility
-    var isDialogVisible by remember { mutableStateOf(false) }
-
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -170,68 +211,76 @@ fun CompactCardWithFixedHeight(
         ) {
             Text(
                 text = pair.first, style = MaterialTheme.typography.bodyMedium.copy(
-                    fontWeight = FontWeight.Medium, fontSize = 14.sp
-                ), color = Color.Black
+                    fontWeight = FontWeight.Medium, fontSize = 14.sp,
+                ), color = Color.Black, maxLines = 2, overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.weight(1f)
             )
             Icon(
                 imageVector = Icons.Default.Info,
                 contentDescription = "Info",
                 modifier = Modifier
                     .size(16.dp)
-                    .clickable {
-                        // Show the dialog when the info icon is clicked
-                        isDialogVisible = true
-                    },
+                    .clickable { onInfoClick() },
                 tint = Color.Gray
             )
         }
     }
-
-    // Show dialog when isDialogVisible is true
-    if (isDialogVisible) {
-        DialogContent(content = pair.second) {
-            // Dismiss the dialog when the close icon is clicked
-            isDialogVisible = false
-        }
-    }
 }
 
+
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DialogContent(content: String, onClose: () -> Unit) {
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(Color.Black.copy(alpha = 0.4f)) // Dark background to overlay content
-        .padding(16.dp)
-        .clickable { /* Prevent clicking outside dialog to dismiss */ }) {
-        Box(
+fun BottomSheetContent(title: String, content: String, onClose: () -> Unit) {
+    val sheetState = rememberModalBottomSheetState(
+        skipPartiallyExpanded = false // Ensures that the sheet cannot be partially expanded
+    )
+
+    ModalBottomSheet(
+        onDismissRequest = { onClose() },
+        sheetState = sheetState,
+        containerColor = Color.White,
+        contentColor = Color.Black,
+    ) {
+        val listOfString: MutableList<String> = mutableListOf()
+        val splitContent = content.split("\n")
+        listOfString.addAll(splitContent)
+
+        Column(
             modifier = Modifier
-                .align(Alignment.Center)
-                .background(Color.White, RoundedCornerShape(8.dp))
-                .padding(16.dp)
+                .fillMaxWidth()
+                .padding(24.dp), horizontalAlignment = Alignment.Start
         ) {
-            Column {
-                Row(
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 20.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                AppText(text = title, isBold = true, color = Green, fontSize = 20)
+                Icon(
+                    imageVector = Icons.Default.Close,
+                    contentDescription = "Close",
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 8.dp),
-                    horizontalArrangement = Arrangement.End
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Close,
-                        contentDescription = "Close",
-                        modifier = Modifier
-                            .size(24.dp)
-                            .clickable {
-                                onClose() // Close the dialog
-                            },
-                        tint = Color.Gray
+                        .size(25.dp)
+                        .clickable { onClose() },
+                    tint = Color.Red
+                )
+            }
+
+            Column(
+                modifier = Modifier.padding(16.dp)
+            ) {
+                listOfString.forEach { item ->
+                    Text(
+                        text = buildAnnotatedString {
+                            append("• ") // Bullet character
+                            append(item)
+                        }, style = MaterialTheme.typography.bodyMedium.copy(
+                            fontSize = 16.sp, lineHeight = 24.sp
+                        ), color = Color.Black, modifier = Modifier.padding(top = 8.dp)
                     )
                 }
-                Text(
-                    text = content,
-                    style = MaterialTheme.typography.bodyMedium.copy(fontSize = 14.sp),
-                    color = Color.Black
-                )
             }
         }
     }

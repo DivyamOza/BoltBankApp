@@ -40,12 +40,55 @@
     <string name="month">Month</string>
     <string name="year">Year</string>
     <string name="overall">Overall</string>
+    <string name="search">Search</string>
     <!--   END HOME SCREEN STRINGS -->
+
 
     <!-- START PROFILE SCREEN STRINGS -->
     <string name="messages">Messages</string>
     <string name="notifications">Notifications</string>
     <string name="account_details">Account Details</string>
     <string name="my_purchases">My Purchases</string>
+    <string name="log_out">Logout</string>
     <!--  END PROFILE SCREEN STRINGS -->
+
+
+    <!-- START SETTINGS SCREEN STRINGS -->
+    <string name="general">General</string>
+    <string name="notifications_subtitle">Enable or disable app notifications</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="dark_mode_subtitle">Switch between light and dark theme</string>
+    <string name="account">Account</string>
+    <string name="change_password">Change Password</string>
+    <string name="change_password_subtitle">Update your account password</string>
+    <string name="language">Language</string>
+    <string name="language_subtitle">Select your preferred language</string>
+    <!-- END  SETTINGS SCREEN STRINGS -->
+
+    <!-- START GRAPH SCREEN STRINGS -->
+    <string name="transactions">Transactions</string>
+    <string name="day">Day</string>
+    <string name="card_type">Card Types</string>
+    <string name="card_type_subtitle">Please select any one card…</string>
+    <string name="platinum_card">Platinum Card</string>
+    <string name="platinum_card_description">"Higher withdrawal and transaction limits.&#10;Exclusive offers and privileges.&#10;Enhanced benefits on travel, dining, and shopping."</string>
+    <string name="gold_card">Platinum Card</string>
+    <string name="gold_card_description">"Suitable for higher spending needs.&#10;Competitive transaction limits compared to premium cards."</string>
+    <string name="wealth_card">Wealth Card</string>
+    <string name="wealth_card_description">"Exclusive to Wealth Management customers.&#10;Premium rewards and lifestyle privileges.&#10;Higher insurance coverage."</string>
+    <string name="pride_card">Pride Card</string>
+    <string name="pride_card_description">"Accepted worldwide.&#10;Moderate transaction and withdrawal limits."</string>
+    <string name="classic_card">Classic Card</string>
+    <string name="classic_card_description">"Standard card for day-to-day transactions.&#10;Affordable issuance and maintenance fees."</string>
+    <string name="card_limit_per_month">Card limit per month</string>
+    <string name="limit">Limit</string>
+    <string name="expenses">Expenses</string>
+    <string name="maximum_limit_title">Maximum limit: ₹50,000 per month</string>
+    <string name="no_data_found">No Data Found!</string>
+    <!-- END  GRAPH SCREEN STRINGS -->
+
+    <!-- START CARD SCREEN STRINGS -->
+    <string name="debit_card">DEBIT CARD</string>
+    <string name="valid_upto">Valid up to</string>
+    <!-- END  CARD SCREEN STRINGS -->
 </resources>

@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
+import com.example.trainingapp.R
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
@@ -26,7 +27,7 @@ fun LineChartView() {
             description.isEnabled = false
             xAxis.valueFormatter = object : ValueFormatter() {
                 override fun getFormattedValue(value: Float): String {
-                    val days = (1..20).map { "Day $it" }
+                    val days = (1..20).map { "${context.getString(R.string.day)} $it" }
                     return days.getOrNull(value.toInt() - 1) ?: value.toString()
                 }
             }

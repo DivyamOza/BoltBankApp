@@ -12,6 +12,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.trainingapp.core.Constants
 import com.example.trainingapp.presentation.screens.dashboardScreen.DashboardScreen
 import com.example.trainingapp.presentation.screens.detailScreen.DetailScreen
 import com.example.trainingapp.presentation.screens.homeScreen.HomeScreen
@@ -31,16 +32,18 @@ import com.example.trainingapp.utils.SecureSharedPreference
 fun AppNavController() {
     val context = LocalContext.current
     val navController = rememberNavController()
-    val startDestination = if (SecureSharedPreference(context).getBoolean("isLoggedIn")) {
-        ScreenName.DASHBOARD_SCREEN
-    } else {
-        ScreenName.SPLASH_SCREEN
-    }
+    val startDestination =
+        if (SecureSharedPreference(context).getBoolean(Constants.PREF_IS_LOGGED_IN)) {
+            ScreenName.DASHBOARD_SCREEN
+        } else {
+            ScreenName.SPLASH_SCREEN
+        }
     NavHost(navController = navController, startDestination = startDestination) {
 
         // SPLASH SCREEN
         composable(route = ScreenName.SPLASH_SCREEN) {
-            AnimatedVisibility(visible = true,
+            AnimatedVisibility(
+                visible = true,
                 enter = slideInHorizontally(initialOffsetX = { 1000 }) + fadeIn(),
                 exit = slideOutHorizontally(targetOffsetX = { -1000 }) + fadeOut()
             ) {
@@ -57,7 +60,8 @@ fun AppNavController() {
 
         // LANDING SCREEN
         composable(route = ScreenName.LANDING_SCREEN) {
-            AnimatedVisibility(visible = true,
+            AnimatedVisibility(
+                visible = true,
                 enter = slideInHorizontally(initialOffsetX = { 1000 }) + fadeIn(),
                 exit = slideOutHorizontally(targetOffsetX = { -1000 }) + fadeOut()
             ) {
@@ -69,7 +73,8 @@ fun AppNavController() {
 
         // LOGIN SCREEN
         composable(route = ScreenName.LOGIN_SCREEN) {
-            AnimatedVisibility(visible = true,
+            AnimatedVisibility(
+                visible = true,
                 enter = slideInHorizontally(initialOffsetX = { 1000 }) + fadeIn(),
                 exit = slideOutHorizontally(targetOffsetX = { -1000 }) + fadeOut()
             ) {
@@ -80,7 +85,8 @@ fun AppNavController() {
 
         // OTP SCREEN
         composable(route = ScreenName.OTP_SCREEN) {
-            AnimatedVisibility(visible = true,
+            AnimatedVisibility(
+                visible = true,
                 enter = slideInHorizontally(initialOffsetX = { 1000 }) + fadeIn(),
                 exit = slideOutHorizontally(targetOffsetX = { -1000 }) + fadeOut()
             ) {
@@ -90,7 +96,8 @@ fun AppNavController() {
 
         // WEB_VIEW SCREEN
         composable(route = ScreenName.WEB_VIEW_SCREEN) {
-            AnimatedVisibility(visible = true,
+            AnimatedVisibility(
+                visible = true,
                 enter = slideInHorizontally(initialOffsetX = { 1000 }) + fadeIn(),
                 exit = slideOutHorizontally(targetOffsetX = { -1000 }) + fadeOut()
             ) {
@@ -100,21 +107,31 @@ fun AppNavController() {
 
         // DASHBOARD SCREEN
         composable(route = ScreenName.DASHBOARD_SCREEN) {
-            AnimatedVisibility(visible = true,
+            AnimatedVisibility(
+                visible = true,
                 enter = slideInHorizontally(initialOffsetX = { 1000 }) + fadeIn(),
                 exit = slideOutHorizontally(targetOffsetX = { -1000 }) + fadeOut()
             ) {
-                DashboardScreen {
-                    navController.navigate(ScreenName.PROFILE_SCREEN) {
-                        popUpTo(ScreenName.DASHBOARD_SCREEN) { inclusive = true }
+                DashboardScreen(
+                    gotoProfile = {
+                        navController.navigate(ScreenName.PROFILE_SCREEN) {
+                            popUpTo(ScreenName.DASHBOARD_SCREEN) { inclusive = true }
+                        }
+                    },
+                    performLogout = {
+                        CommonUtils.logout(
+                            context = context,
+                            navController = navController
+                        )
                     }
-                }
+                )
             }
         }
 
         // HOME SCREEN
         composable(route = ScreenName.HOME_SCREEN) {
-            AnimatedVisibility(visible = true,
+            AnimatedVisibility(
+                visible = true,
                 enter = slideInHorizontally(initialOffsetX = { 1000 }) + fadeIn(),
                 exit = slideOutHorizontally(targetOffsetX = { -1000 }) + fadeOut()
             ) {
@@ -129,7 +146,8 @@ fun AppNavController() {
             route = ScreenName.DETAIL_SCREEN + "/{id}",
             arguments = listOf(navArgument("id") { type = NavType.StringType })
         ) {
-            AnimatedVisibility(visible = true,
+            AnimatedVisibility(
+                visible = true,
                 enter = slideInHorizontally(initialOffsetX = { 1000 }) + fadeIn(),
                 exit = slideOutHorizontally(targetOffsetX = { -1000 }) + fadeOut()
             ) {

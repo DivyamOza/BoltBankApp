@@ -101,7 +101,6 @@ fun LoginScreen(gotoPrivacyPolicy: () -> Unit, gotoOTP: () -> Unit) {
                     }
                 },
                 modifier = Modifier.padding(horizontal = 60.dp),
-                //enabled = isLoginButtonEnabled,
             )
             AppSpacer(height = 15.dp)
             Text(
